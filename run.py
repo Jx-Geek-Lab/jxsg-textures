@@ -1,5 +1,4 @@
 import os
-import math
 import random
 from PIL import Image, ImageDraw
 
@@ -15,21 +14,21 @@ quantity = 10                           # Number of generations
 
 name = "grass"
 
-tone = 1
+image = Image.open("samples/grass/0000.png")
+w, h = image.size
 
-def l(v):
-    v = math.floor(v * (1 + tone))
-    if v > 255:
-        return 255
-    return v
+pixels = list(image.getdata())
 
-def d(v):
-    v = math.floor(v * tone)
-    if v < 0:
-        return 0
-    return v
+palette = []
 
-fn = d
+for row in range(int(w / 11)):
+    for col in range(int(h / 11)):
+        offset = (row * (77 * 11)) + col * 11
+        pixel = pixels[offset]
+        if 255 != pixel[0] or 255 != pixel[1] or 255 != pixel[2]:
+            palette.append(pixels[offset])
+
+print(palette)
 
 def conv(hex):
     return tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
@@ -61,14 +60,6 @@ grass = [
     [conv("535f57"), 1],
     [conv("b6af64"), 1],
 ]
-
-palette = []
-
-samples = grass
-
-for sample in samples:
-    for weight in range(sample[1]):
-        palette.append(sample[0])
 
 for z in range(quantity):
 
