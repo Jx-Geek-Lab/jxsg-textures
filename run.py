@@ -12,23 +12,32 @@ img_hght = grid_y * cell                # Image height
 
 quantity = 1                            # Number of generations
 
-name = "grass"
+name = "sand"
 
-image = Image.open("samples/grass/0000.png")
-w, h = image.size
+image = Image.open("samples/sand/0001.png")
+sw = 550
+sh = 275
+seek = (sw * 25) + 25
 
 pixels = list(image.getdata())
 
 palette = []
 
-for row in range(int(w / 11)):
-    for col in range(int(h / 11)):
-        offset = (row * (77 * 11)) + col * 11
-        pixel = pixels[offset]
-        if 255 != pixel[0] or 255 != pixel[1] or 255 != pixel[2]:
+matrix = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+for row in range(10):
+    for col in range(10):
+        offset = ((row * (sw * 25)) + col * 25) + seek
+        r = pixels[offset][0]
+        g = pixels[offset][1]
+        b = pixels[offset][2]
+        n = str(r) + 'x' + str(g) + 'x' + str(b)
+        if '0x0x0' != n and '255x255x255' != n:
+            matrix[col] = matrix[col] + 1
             palette.append(pixels[offset])
 
-print(palette)
+for index, value in enumerate(matrix):
+    print (chr(65 + index) + ' = ' + str(value))
 
 def conv(hex):
     return tuple(int(hex[i:i+2], 16) for i in (0, 2, 4))
