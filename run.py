@@ -4,17 +4,17 @@ from PIL import Image, ImageDraw
 
 cell = 16                               # Cell size in pixels
 
-grid_x = 640                            # Grid size by X in cells
-grid_y = 640                            # Grid size by Y in cells
+grid_x = 64                             # Grid size by X in cells
+grid_y = 64                             # Grid size by Y in cells
 
 img_wdth = grid_x * cell                # Image width
 img_hght = grid_y * cell                # Image height
 
 quantity = 1                            # Number of generations
 
-name = "sand"
+name = "ground"
 
-image = Image.open("samples/sand/0001.png")
+image = Image.open("samples/" + name + "/0001.png")
 sw = 550
 sh = 275
 seek = (sw * 25) + 25
