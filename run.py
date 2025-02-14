@@ -4,13 +4,13 @@ from PIL import Image, ImageDraw
 
 cell = 16                               # Cell size in pixels
 
-grid_x = 64                             # Grid size by X in cells
-grid_y = 64                             # Grid size by Y in cells
+grid_x = 640                            # Grid size by X in cells
+grid_y = 640                            # Grid size by Y in cells
 
 img_wdth = grid_x * cell                # Image width
 img_hght = grid_y * cell                # Image height
 
-quantity = 10                           # Number of generations
+quantity = 1                            # Number of generations
 
 name = "grass"
 
@@ -38,28 +38,6 @@ def save(image, index):
     if os.path.exists(filename):
         os.remove(filename)
     image.save(filename, "PNG")
-
-grane = [
-    [conv("0b0c07"), 1],
-    [conv("2a323d"), 3],
-    [conv("7e8484"), 3],
-    [conv("b8c2c1"), 3],
-    [conv("754433"), 4],
-    [conv("ac644c"), 4],
-    [conv("d09c84"), 4],
-    [conv("c75f3c"), 7],
-    [conv("ecae89"), 7],
-]
-
-grass = [
-    [conv("4b5d55"), 5],
-    [conv("536b58"), 5],
-    [conv("5e7a57"), 5],
-    [conv("6b7d53"), 3],
-    [conv("7b8c5c"), 3],
-    [conv("535f57"), 1],
-    [conv("b6af64"), 1],
-]
 
 for z in range(quantity):
 
